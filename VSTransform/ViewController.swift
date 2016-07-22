@@ -64,19 +64,14 @@ class ViewController: UIViewController {
     
     func checkSliderValue(sender: UISlider) {
         if segment.selectedSegmentIndex == 0 && sender == slider1 {
-            indicatorSegment.hidden = true
             translateBoxX()
         } else if segment.selectedSegmentIndex == 0 && sender == slider2 {
-            indicatorSegment.hidden = true
             translateBoxY()
         } else if segment.selectedSegmentIndex == 1 && sender == slider1 {
-            indicatorSegment.hidden = false
             scaleBoxX()
         } else if segment.selectedSegmentIndex == 1 && sender == slider2 {
-            indicatorSegment.hidden = false
             scaleBoxY()
         } else if segment.selectedSegmentIndex == 2 && sender == slider1 {
-            indicatorSegment.hidden = true
             rotateBox()
         }
 
@@ -90,11 +85,14 @@ class ViewController: UIViewController {
     func optionsInView(sender: UISegmentedControl) {
         currentState = boxView
         if sender.selectedSegmentIndex == 0 {
+            indicatorSegment.hidden = true
             slider2.hidden = false
         } else if sender.selectedSegmentIndex == 1 {
+            indicatorSegment.hidden = false
             slider2.hidden = false
 
         } else if sender.selectedSegmentIndex == 2 {
+            indicatorSegment.hidden = true
             slider2.hidden = true
         }
     }

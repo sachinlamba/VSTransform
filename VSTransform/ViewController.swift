@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     let segment = UISegmentedControl(items: ["translate", "scale", "rotate", "nil"])
     var currentState = UIView()
     
+    var indicatorSegment = UISegmentedControl(items: ["Decrese", "Increase"])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -38,15 +40,17 @@ class ViewController: UIViewController {
 
         switchButton.frame = CGRect(x: screenSize.width/2 - 30, y: 20, width: 20, height: 20)
         segment.frame = CGRect(x: screenSize.width/2 - 120, y: 100, width: 240, height: 40)
+        indicatorSegment.frame = CGRect(x: screenSize.width/2 - 100, y: 220, width: 200, height: 20)
         
-        slider1.frame = CGRect(x: screenSize.width/2 - 100, y: 200, width: 200, height: 20)
+        slider1.frame = CGRect(x: screenSize.width/2 - 100, y: 190, width: 200, height: 20)
         slider2.frame = CGRect(x: screenSize.width/2 - 100, y: 250, width: 200, height: 20)
-
+        
         bottomView.addSubview(switchButton)
         bottomView.addSubview(segment)
         bottomView.addSubview(slider1)
         bottomView.addSubview(slider2)
-        
+        bottomView.addSubview(indicatorSegment)
+        indicatorSegment.hidden = true
         slider2.hidden = true
         
         switchButton.addTarget(self, action: #selector(clock), forControlEvents: .ValueChanged)
@@ -60,14 +64,19 @@ class ViewController: UIViewController {
     
     func checkSliderValue(sender: UISlider) {
         if segment.selectedSegmentIndex == 0 && sender == slider1 {
+            indicatorSegment.hidden = true
             translateBoxX()
         } else if segment.selectedSegmentIndex == 0 && sender == slider2 {
+            indicatorSegment.hidden = true
             translateBoxY()
         } else if segment.selectedSegmentIndex == 1 && sender == slider1 {
+            indicatorSegment.hidden = false
             scaleBoxX()
         } else if segment.selectedSegmentIndex == 1 && sender == slider2 {
+            indicatorSegment.hidden = false
             scaleBoxY()
         } else if segment.selectedSegmentIndex == 2 && sender == slider1 {
+            indicatorSegment.hidden = true
             rotateBox()
         }
 
